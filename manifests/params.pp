@@ -5,8 +5,8 @@
 class puppet::params {
 
   # OS/Distro-specific Settings
-  case $::lsbdistid {
-    'Ubuntu': {
+  case $::osfamily {
+    'Debian': {
       $config_file         = '/etc/puppet/puppet.conf'
       $puppet_package_name = 'puppet'
       $agent_service_name  = 'puppet'
@@ -15,7 +15,7 @@ class puppet::params {
       $server_default_file = '/etc/default/puppetserver'
     }
     default: {
-      notify { "There are no params for ${::lsbdistid} yet.": }
+      notify { "There are no params for ${::osfamily} yet.": }
     }
   }
 
