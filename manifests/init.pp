@@ -63,7 +63,7 @@
 #
 class puppet (
   $manage_repo             = $puppet::params::manage_repo,
-  $puppet_package_name     = $puppet::params::package_name,
+  $puppet_package_name     = $puppet::params::puppet_package_name,
   $puppet_package_ensure   = $puppet::params::puppet_package_ensure,
   $main_settings           = $puppet::params::main_settings,
   $agent                   = $puppet::params::agent,
