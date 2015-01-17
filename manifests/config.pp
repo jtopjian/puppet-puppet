@@ -32,7 +32,7 @@ class puppet::config {
     }
 
     if $::puppet::agent_service_mode == 'daemon' {
-      if $::lsbdistid == 'Ubuntu' {
+      if $::osfamily == 'Debian' {
         file { '/etc/default/puppet':
           ensure => present,
           owner  => 'root',
