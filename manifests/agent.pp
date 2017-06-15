@@ -1,7 +1,7 @@
 class puppet::agent (
   $settings,
   $config_file    = $::puppet::params::config_file,
-  $service        = 'daemon',
+  $service_mode   = 'daemon',
   $service_enable = true,
 ) inherits puppet::params {
 
@@ -17,20 +17,19 @@ class puppet::agent (
     }
   }
 
-  if $service == 'daemon' {
-
+  if $service_mode == 'daemon' {
     Ini_setting <| tag =='puppet-config' |> ~> Service['puppet']
-
-    if $service_enable == true {
+    if $service_enable {
       $service_ensure = 'running'
     } else {
       $service_ensure = 'stopped'
     }
 
     service { 'puppet':
-      ensure  => $service_ensure,
-      enable  => $service_enable,
-      require => Package['puppet'],
+      ensure   => $service_ensure,
+      enable   => $service_enable,
+      provider => 'init',
+      require  => Package['puppet'],
     }
 
     case $::lsbdistid {
