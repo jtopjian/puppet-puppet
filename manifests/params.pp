@@ -7,8 +7,8 @@ class puppet::params {
   # OS/Distro-specific Settings
   case $::osfamily {
     'Debian': {
-      $config_file         = '/etc/puppet/puppet.conf'
-      $puppet_package_name = 'puppet'
+      $config_file         = '/etc/puppetlabs/puppet/puppet.conf'
+      $puppet_package_name = 'puppet-agent'
       $agent_service_name  = 'puppet'
       $server_package_name = 'puppetserver'
       $server_service_name = 'puppetserver'
