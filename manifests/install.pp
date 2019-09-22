@@ -11,7 +11,6 @@ class puppet::install {
   }
 
   if $::puppet::server {
-    notify { 'Install server': }
     package { 'puppetserver':
       ensure => $::puppet::server_package_ensure,
       name   => $::puppet::server_package_name,
